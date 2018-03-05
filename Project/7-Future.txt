@@ -1,0 +1,43 @@
+Future Work
+
+With the lukewarm results of my project, I have come up with several ideas on how my robot could be redesigned for better performance and improved with additional features.  This is in addition to the several of the solutions previously discussed.
+
+Improving the Sensors
+
+As mentioned, I encountered several issues with the ultrasonic sensors used to detect obstacles.  If I were to start again from scratch, I would probably redesign the robot to eliminate these completely.  In an ideal set up, the robot would be moving much faster than mine was able to.  As such, even if the sensors were significantly improved, there would still be issues related to unreliable results.  A much more reliable and easy to implement solution would be to use contact switches.  Each side of the robot could have a switch mounted so that it is pressed when it comes into contact with an obstacle.  The robot could then act appropriately to move away from the position of contact.  The behaviour may not be as pretty, but it would cetainly be capable of being both quick and reliable.  An additional benefit is that these buttons could double in function as the actual control buttons for the robot.  For example, they could be used to turn off the alarm with a long press, or pressing of all switches at once.  All of the other functions occur when the robot does not require the contact switches to sense for movement, so they could also be used to access these functions when the robot is not in the active mode.
+
+Improving the Movement
+
+Improving the motors is something that I discussed in the previous section.  Faster/more powerful motors would allow the robot to move at much higher speeds, allowing it to fully achieve its intended purpose of running away from the user.  To handle higher speeds, the robot would also need to be more robust.  If this robustness is increased enough, it would also allow the robot to fall down stairs or jump off from tables, as I mentioned in my comparison the the Clocky robot.  
+
+If the contact sensor idea above were to be implemented, this would allow the robot to quickly and more reliable act on obstacles, thus making it behave better while moving.  However, this would limit the ability of the robot to move away from a person attempting to catch it.  This could be improved by adding IR sensors to cover the full 360 range around the robot.  This would help to move away from a person more easily.  I found the IR sensors to be more reliable than the ultrasonic sensors, so better detection would result in better movement away from the user.
+
+Improving the Sound
+
+The alarm right now is a simple buzzer.  It is capable of playing simple tones.  To make this robot much cooler, a proper speaker could be used.  This would allow the user to play actual music and sounds as the alarm.  For example, several music or sound files could be loaded into the program and the user could select one to play.  This could be further enhanced be having the user upload their own sound/music files so that they can have their own custom sound to wake themselves.
+
+Improving the Clock
+
+The clock right now only displays time in a 24hr format.  The user is only able to set the alarm for a specific time within a 24hr period of the current time, and there is no snooze function.  The obvious improvement here is to simply improve the clock features.  The user should be able to choose between a number of clock display formats.  The standard 12/24hr clocks should be available, but a date function could be added.  Currently I have the date display only on startup.  Additionally, the user could be able to choose from a number of stylized clock faces, like those currently available on the Pebble or Apple watches.  All of these functions would also likely require a better display than the simple LCD used for this project.
+
+Improving the Difficulty (to aid in waking the user)
+
+As previously mentioned, making the robot move faster would make it more difficult to catch.  Additionally, improving the robustness of the robot so that it can handle situations like stairs, makes it able to traverse more areas of the home, meaning it can be more difficult to find.  Also, implementation of the puzzle combination to shut off the alarm (which I mentioned in the introduction to the project), would increase the difficulty.  This could even be enhanced by requiring a mini game of 'Simon' like that seen in the SIK circuit #16.
+
+Improving the Interface
+
+Finally we come to what I think is the coolest idea to enhance this project - adding phone support.  I think that the product could be fully integrated with the user's mobile phone through an app.  THe alarm and clock functions could be pretty much offloaded from the robot itself, as many people already use their phones as their personal alarms.  This would allow the music and sound features mentioned above.  It also avoids the problem of the alarm being quieter as the robot moves further from way from the user.  The alarm could be shut off via the NFC capabilities in many phones, or some type of short distance connection.  After this there could be a requirement for a puzzle lock or some other brain-intensive action to shut off the alarm.  This type of integration opens up a plethora of possible interactive features, most of which could be implemented in the app itself, thus leaving the design of the robot itself much more limited in scope.  I think this idea is awesome and someone should make it so I can buy it!
+
+
+So that's it... project over.  I had fun and learned a lot.  Hopefully anyone reading this can also learn from my experience and my mistakes.
+Here's the playlist of all 4 project videos in case you missed one!
+
+YOUTUBE = https://www.youtube.com/watch?v=GxHpvkAMlKg&list=PLGwxDzcLDnGmUykkb32iuBLCcKZ0ctNEY
+
+PIX
+CODE
+UPLOAD
+WATCH 4 LINX
+SUBMIT
+GROUP WORK
+OTHER COURSE QUIZZES

@@ -1,0 +1,22 @@
+So I'm about to head to the electronic and mechanical component market here in Seoul, and I need to plan which parts I will need to look for.  I think I can build this project with a number of basic components.  Here's a list of what I think I will need.
+
+A chassis to hold all the parts
+A battery pack to power the robot
+Some type of movement effector such as wheels or treads, depending on what's available
+Ultrasonic sensors for wall and object detection
+IR sensors to detect the user, possibly also for wall and object detection
+An LCD display to display the time (included with the SIK)
+Switches/buttons to turn off the alarm, possibly also to use as contact switches (4 included with the SIK, may need more)
+A device to play the alarm sound (the piezo buzzer included with the SIK should do)
+
+That should cover the basics of the system.  However, I had an idea to try and deter the user from picking up the device to shut it off by using a spinning device.  For this I will also need a motor (included with the SIK), and a some sort of stick, like a popsicle stick or chopstick, which I can find anywhere pretty easily.
+
+Other components that I may need include an additional breadboard to wire the components, but hopefully there are enough jumper wires in the SIK to connect everything.  I may also need a new integrated circuit to expand the number of control ports, since I broke mine while going through the SIK guide.
+
+I will head out tomorrow and see what I can find.  It may be very hard to find components since I live in Korea and don't speak Korean well (or at all really).  If I am unsuccessful, I will have to turn to some online vendors and hopefully be able to ship the parts quickly.
+
+...
+
+Ok, so I found a cool little shop that sells Arduino parts online.  The proprietor spoke a little bit of English, so I was able to get my point across about what I was making and what I needed.  I ended up getting everything that I needed from my list for now, and also some extra wires and an extra breadboard.  Here's a video I made showing off the parts:
+
+video link

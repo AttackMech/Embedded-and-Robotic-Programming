@@ -1,0 +1,114 @@
+Physical Layout
+
+With all the parts I have, the physical layout of the robot should be relatively easy to set up.  I will set my bigger breadboard along the long axis of the chassis.  The ultrasonic sensors will be located at the front of the robot, so as to be able to detect objects as it drives around.  I will place the IR sensor in the back to be able to detect motion behind the vehicle.  When the robot is not moving, if the user attempts to get the robot from behind, the motion will be detected and the robot can react by moving forward.  If the user attempts to get the robot from another angle, the ultrasonic sensors will detect this.  The other components will be placed onto the breadboard as they fit, and I will try to keep the alarm/clock controls close together since they are all related.  The actual RedBoard itself will be mounted toward the rear of the robot, or wherever I can find room for it.
+
+There are a lot of other components to place as well.  There is a AA battery pack for powering the whole thing.  I will attempt to place this underneath the chassis, but with the motors mounted under there, it may be difficult to find room.  The motors themselves are already in place, as the chassis came assembled from the shop that I purchased it from.  The RedBoard itself will probably be the most difficult piece to find room for.  I can try and attach it underneath also, but I doubt it will fit, and it will be difficult to manage the wiring that way.  I may just end up taping it to the battery pack and having placing it on top of the unit, either on it's own or covering up non-critical components.
+
+In regards to the actual attachment of components,  The breadboard has a sticky back which I can use to hold it in place.  I also want the front ultrasonic sensor to be facing forward, which means that it cannot be plugged directly into the breadboard, so I will probably have to secure it in place with some glue or tape.  The same goes for the rear-facing IR sensor.  The other ultrasonic sensors might plug into the breadboard directly because they will be used for wall detection along the sides of the robot.  All other components should also be able to plug directly into the breadboard.  I am not too concerned about wire management at this time, but if it becomes a problem I may have to route some underneath the chassis or tie them off with a twist-tie or something.
+
+
+Programming Code Structure
+
+I feel that I can divide the features of the robot into to basic functional categories.  The first is the alarm/clock functions, the second is the movement behaviour.
+
+Timekeeping Code
+
+For the clock, I will use the RTC unit to sync the system and keep time when the robot is switched off.  I feel this unit draws a lot of power so I don't want the display to be constantly on.  I will need to figure out how to adjust the power to the back-light or the unit itself so that it is not always on display.  The LCD should be on when the alarm begins ringing, and when the user interacts with the device.  I will attempt to control this with a button switch and possibly a relay.  Other buttons will be used to set the alarm function.  At this time, I do not plan to implement a clock setting functionality, because that is not the focus of this project.  I will add it later if I have time and can do it easily.
+
+There are also some other issues to consider for an alarm clock.  I could implement a snooze button that is standard with most alarms.  However, the purpose of this robot is to get you up, and I feel that a snooze function just lets you go back to sleep, so I don't think the implementation of that function is worthwhile.  I have also thought about using a puzzle lock to be able to shut off the alarm.  This would involve the input of a specific button sequence to be able to shut off the alarm, further causing the user to engage their brain in a wakeful manner.  However, this is not a key feature, so I will only add it if I have some time at the end of my project.  Finally, there is also the consideration of the time format.  I am going to stick with 24-hour time for now, because it is easier for me to work with and display.  Switching to 12-hour time should be fairly trivial and like the combination lock, I will only implement it if I feel I have time and/or it is necessary.
+
+Here is some pseudocode for the timekeeping function of my robot.
+    
+import libraries
+declare constants/variables
+
+setup {
+	
+	sync time with RTC
+	set up button controls
+}
+
+loop {
+	
+	if current time == alarm time
+		sound alarm
+
+	if alarm on && button pushed
+		turn off alarm
+
+	if button pushed
+		turn on LCD display
+		display current time
+
+		if alarm set button pushed
+			display current alarm setting
+			move cursor to alarm hour
+			
+			if user pushes change button
+				change hour
+
+			if user pushes set button
+				save hour
+				move cursor to minutes
+
+				if user pushes change button
+					change minutes
+
+				if user pushes set button
+					combine minutes and hours
+					save alarm time
+
+		if no button pushed for 30 seconds
+			turn off LCD display
+}
+
+
+Movement Code
+
+As I mentioned in my earlier project discussions, the robot will implement a reactive control architecture because it is operating on a short time scale.  The user should be able to catch and turn off the robot within a few minutes, and during the time the alarm is not on, the robot remains at rest.  The robot also does not have time to plan actions, as it needs to be very quick to get away from the user.  The goal is to get far away so the user has to get up and move to turn off the alarm, hopefully putting them in a wakeful state to keep them from sleeping in.
+
+The basic function is for the robot to move while the alarm is on, without running into any objects.  I will have the robot move for a certain time, say 10-30 seconds, then pause and wait for the user.  If movement is detected, the robot will move away from the detected movement.  It will continue this behaviour until the alarm is turned off.
+
+I am using a similar reactive controller as presented in our textbook in Chapter 14 - Don't Think, React!  I will need to specify a safe and danger zone for the robot so that it can avoid obstacles.  Right now, I am going to implement basic avoidance behaviour, but I may also add some randomness to the movement later to make the robot more unpredictable.  Basically, I would use a timer to decide when to make a random turn.
+
+include libraries
+declare constants/variables
+
+setup {
+	
+	set up pins for motor control
+	set up pins for sensor input
+}
+
+loop {
+	
+	if alarm is on
+		move forward for set time
+		
+		if front sensor object detection
+
+			if left object detection
+				turn right
+				continue forward
+
+			if right object detection
+				turn left
+				continue forward
+
+			else 
+				turn in another direction (left or right)
+				continue forward
+
+		if time over
+			stop movement for set time
+
+		if stop time over
+			move forward for set time
+
+		if stopped && movement detected
+			turn away from movement
+			move forward for set time
+
+}
+
+That's it!  Time to build the robot and implement the code.

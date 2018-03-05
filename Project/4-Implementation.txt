@@ -1,0 +1,26 @@
+I've finally coded both the alarm module and the movement module.  It took a lot more work than I had initially anticipated.
+
+Alarm Clock
+
+The alarm clock uses the LCD as the main display.  The program begins and loads the time from the RTC module.  It displays the date on the LCD, followed by the current time and then the alarm time.  The display will turn off after 7 seconds if the user does not push a button.  If a button is pushed, the timer resets.  The user can set the alarm by pushing the set (blue) button while the display is on.  This enters the alarm setting mode where the user is prompted to enter in the hours and minutes separately, using the up/down (green/red) buttons, and confirming with the set (blue) button.  The hours and minutes are saved to the RedBoard's EEPROM memory, and the alarm is set.  If the current time is greater than the alarm time, the alarm is set for the specified time the next day.
+
+The alarm goes off at the specified time, causing the buzzer to go off.  It beeps by pulsing once per second and continues until the user pushes any button to stop it.  This will also reset the alarm for the same time the next day.  Currently there is no way to have the alarm not go off at all, but this is not necessary for the time being.  I have not implemented the combination lock functionality to turn off the alarm as of yet, and the time is currently only available in 24-hour format.
+
+The reason this part of the project has caused so much headache for me is because of the LCD.  I first set it up as outlined in the Inventor's Kit guidebook.  That was easy enough, but it requires the use of many of the RedBoards pins.  I wouldn't be able to implement the sensors and motors because there wouldn't be enough slots left.  Therefore, I decided to use the 74HC595 IC chip included with the SIK.  Holy guacamole it was difficult to do!  There are a bunch of different libraries online, the wiring was pretty hairy to figure out, and I also broke my IC (which actually turned out to not be a big deal - see my post)!  I eventually figured it all out, so now the LCD only takes up 3 of the RedBoard pins.  However, with the current libraries I'm using, I don't have access to the unused output pins available with the chip.  I will have to try and figure out what I can do to further reduce my pin usage, because I can't seem to find any shop that sells more of the 74HC595 without buying less than 30 at once.  Anyway, for now my alarm clock is up and running.  Here is a video of it in action:
+
+YOUTUBE
+
+
+Sensor/Motor Control
+
+I have the 3 ultra-sound sensors hooked up and my motors are hooked into the RedBoard through the L293D chip.  It has been a much easier process to set up compared to the LCD troubles I had earlier.  I also discovered a useful tip to get some extra pin space on the RedBoard - you can use the analog pins just like digital ones (I also made a post about it)!  I believe this should give me enough space to get all the components in without any more components.
+
+The code I have simulates the alarm turning on after 30 seconds.  The robot begins moving forward.  Each loop of the program reads from the sensors and stores the values in an array.  If it detects it is too near a wall, it will turn away.  After 10 seconds, the robot stops moving and waits.  When motion is detected, it begins moving again in a direction away from where the motion was detected.  These actions continue in perpetuity because there is no way to shut off the alarm for this portion of the program.  
+
+The motor control is fairly easy.  I move forward by outputting HIGH signals to one of the wires of the motors, with LOW to the others, just like in the Inventor's Kit guidebook example.  Backing up is done by reversing the outputs.  Turning left or right is also simple.  One wheel moves forward while the other reverses.  The only difficulty is finding the timing to be able to turn an appropriate amount.  I just calibrated this by running a few trials.
+
+Overall, I'm pretty pleased with the behaviour, but the robot moves a bit too slow for my liking.  This is because the motors included in the chassis are pretty small.  I would have liked to have at least used the ones included in the Inventor's Kit, but unmounting the small ones and replacing them is not worth all the effort I would have to put in.  I'd rather keep the current configuration and just show the robot as a proof of concept, rather than an actual 100% working model.  Here is a video of the action:
+
+YOUTUBE
+
+So now, all that remains is to combine these two modules into a final product.  Hopefully the process will be smooth.

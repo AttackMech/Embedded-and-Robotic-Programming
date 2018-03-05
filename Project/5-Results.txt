@@ -1,0 +1,39 @@
+Physical Comp
+
+As I mentioned in the previous section on implementation, I was working on combining the alarm module with the sensor/motor module.  The first step was the combination of the physical components.  This was an easy process, because I had all the circuits planned out with the previous modules.  The only concern was to make sure there was enough room on the breadboard.  There ended up being plenty of room, because I purchased a large size breadboard for this project instead of using the one that came with the kit.  There was a lot of wiring to do, but since I had done it all before, it ended up being quite easy.
+
+In terms of placement for physical components, I did manage to squeeze everything onto my chassis.  I held everything in place with electrical tape so that I could easily reconfigure if needed.  I put the battery pack at the front, with 3 ultrasonic sensors attached for the front, left, and right directions.  The breadboard fit behind the battery pack, along the length of the chassis, and was actually pretty secure, because of 2 little plastic tabs on the chassis that kept it from moving laterally.  On the back of the breadboard, I taped the IR sensor into place.  There was also a mess of wires to deal with.  Extra slack from the ultrasonic sensors was taped to the bottom of the chassis.  Most of the wiring on top was left in place as it didn't interfere with the operation of the robot.  Finally, the RedBoard I simply placed it on top of the battery pack.  I did not secure it with tape for two reasons.  First, I wanted to be able to replace the batteries easily.  Second, I wanted to be able to access both the DC input and USB inputs of the RedBoard easily as well.
+
+Here are some pictures of the monster that I have created:
+
+PICTURES - F/B/S/T/U?
+
+With everything reasonably in place, I moved on to integrating the code modules as well.
+
+
+Coding
+
+The integration was very straightforward, the only real work I did was just cleaning up the code for readability and understanding.  I had previously designed both modules for just this scenario so I was happy that everything turned out well when it came time to create the full program.
+
+The one problem I did have was not with the code exactly, but it required some minor fiddling with it.  I miscounted the number of pins that I was using, and it ends up that I have one too many pins in use!  I tried to compensate for this by using the extra pins on my IC.  Unfortunately, with the LCD library I'm using in conjunction with it, the extra pins don't seem to be available for use (or at least I couldn't figure out how to do it).  However, I did come up with a crude workaround.  The RTC module (which keeps the time when no power is connected) is only used once, in the setup() portion of the code, to read the time and store it in the system.  From that point on, the system itself is used for all time calculations and functions.  Accordingly, after the system starts up, the pins for the RTC are no longer needed.  So I simply unplug one after the initial start up, and plug in the extra component I need, which in this case is the pin for the IR sensor.  Of course I have to remember to switch them every time I start up the system, but it is very easy to do and it never caused me any problems.
+
+Here is the fully integrated code if you would like to examine it:
+
+CODE
+
+*Note - this code uses several libraries that are not included with the standard Arduino IDE.  If you have any questions about them, please feel free to contact me.
+
+
+Expected Performance
+
+So I finally came to the bread-and-butter of the project.  Time to put the robot to work.  I expect the clock functions to behave as normal, being able to read the clock and set the alarm, etc.  I expect the robot to avoid common obstacles such as walls and furniture.  If the robot becomes stuck, I expect it to back out of it's position and begin moving again.  The robot should move every thirty seconds, and pause for 10 seconds between each movement.  If movement is detected during the pause time, the robot will attempt to move away from ths movement.
+
+
+Actual Performance
+
+I made a video explaining the robot and some of the action.
+
+YOUTUBE
+https://www.youtube.com/watch?v=MIAfaU531vA
+
+As you can see, the robot behaves reasonably well in a variety of scenarios.  However, there were several issues.  My original intention was to improve upon the design of the Clocky robot.  Overall, I don't think I have achieved this result.

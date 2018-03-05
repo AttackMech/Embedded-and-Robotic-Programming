@@ -1,0 +1,21 @@
+My initial idea for this robotics project was an idea I had when first reading about the Arduino at the beginning of this course.  There is a quick mention in the history of Arduino about a project one student had that had an alarm clock moving up on a string or something to get a person to wake up.  My idea was to have a robotic alarm clock that runs away and hides to have the user wake up and have to shut off the alarm.  I searched around on the Internet and I found that someone has already come up with this idea.  The robot is called "Clocky" and is basically the exact idea I had.  However, I looked at the product on Amazon, and noticed that it had some shortcomings.  One of the main problems users had was that the robot did not move around much because it would either not move well on a carpet or get stuck on objects (as seen in this video).  Therefore, I plan to forge ahead with my initial idea, hopefully improving the functionality of this product so that the alarm is more effective by having the robot implement a better form of movement functionality.
+
+Product
+http://nanda-home.myshopify.com/collections/frontpage/products/clocky
+
+Review
+http://www.amazon.com/gp/customer-reviews/R1CD8PS1L2NUUZ/ref=cm_cr_pr_rvw_ttl?ie=UTF8&ASIN=B004MSMUGI
+
+Prob Video
+https://www.youtube.com/watch?v=o2rUhCsHcZ0
+
+Since the exact details of the control architecture for the Clocky are unavailable, and it does not work effectively anyway, I will start from scratch in designing my robot.  The clocky is designed to "jump" off the nightstand and run around.  The user has the option to set a snooze, but after 1 snooze they must find the robot to shut it off.
+
+I will not implement the jumping functionality at this time, but instead focus on the specifics of having the robot navigate the home environment to avoid the user.  I feel that a reactive control architecture is best for this project so that the robot can move and react quickly.  Planning movement is not really necessary for this robot to function effectively, so the robot will not benefit greatly from the implementation of a delibritive, hybrid, or BBC system.
+
+The way I imagine the robot working at this beginning stage is to have the alarm set for a particular time to go off.  Once the alarm is activated, the robot should immediately head off, hopefully away from the user trying to deactivate it.  The robot should be able to avoid collisions with walls, or at least not get stuck on them.  Also, the robot should hopefully be able to leave the room, which many Clocky users state that it does not.
+
+Once the user finds the robot, the should be able to push a switch to turn off the alarm clock.  If I have time, I will also implement the snooze functionality, but my focus will be on the navigation portion, as I feel this is the key to the success of this particular robot.  However, I have some ideas about how to improve this area as well.  For instance, the button to turn off the clock can be located on a hard to reach place on the robot, so that the user will need to actually capture the robot to be able to shut of the alarm.  The bottom of the robot seems like a good place, but it depends on the exact design of the robot.  Another idea is to have some sort of deterrent to being able to capture the robot.  The robot can actively move away from the user, or have some kind of action when it's picked up to help avoid being turned off.
+
+I will probably not delve too deeply into the specifics of different alarm sounds or clock functionality at this point.  As mentioned previously, I will focus on robot navigation.  If I have time these features can be added later.
+
